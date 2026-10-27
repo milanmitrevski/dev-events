@@ -1,5 +1,12 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import posthog from 'posthog-js';
+
+const isPostHogConfigured = Boolean(
+  process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST,
+);
 
 type Props = {
   title: string;
@@ -18,8 +25,14 @@ export default function EventCard({
   date,
   time,
 }: Props) {
+  const handleOpen = () => {
+    if (isPostHogConfigured) {
+      posthog.capture('event_details_opened', { event_slug: slug });
+    }
+  };
+
   return (
-    <Link href={`/events/${slug}`} id="event-card">
+    <Link href={`/events/${slug}`} id="event-card" onClick={handleOpen}>
       <Image
         src={image}
         alt={title}
