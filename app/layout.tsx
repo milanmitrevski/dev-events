@@ -35,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         geist.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col dark">
         <Navbar />
         <div className="absolute inset-0 top-0 z-[-1]">
           <LightRays
@@ -62,7 +62,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
             clickPulse
             intro
             lightMode={false}
-            style={{ width: '100%', height: '600px', position: 'relative' }}
+            style={{ width: '100%', height: '1000px', position: 'relative' }}
           />
         </div>
         <main>{children}</main>
